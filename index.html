@@ -419,6 +419,10 @@ font-family: 'Segoe UI', sans-serif;
     width: 35px;
     height: 35px;
 }
+.leaflet-control-layers {
+  opacity: 0;
+}
+
     </style>
 </head>
 <body>
@@ -620,8 +624,19 @@ var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_brigh
 	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	ext: 'png'
 });
+// Настройка слоев для переключения
+
+// Настройка слоев для переключения
+const baseLayers = {
+    "OSM": osmLayer,
+    "Google Maps": googleStreets,
+};
 
 googleStreets.addTo(map)
+
+// Добавляем контрол для переключения карт
+L.control.layers(baseLayers).addTo(map);
+
 // Настройка слоев для переключения
 
 // Функция для изменения фильтра на изображении
@@ -1167,37 +1182,6 @@ fetch("granica.json")
     }).addTo(map);
   });
 
-fetch("front.json")
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      style: function(feature) {
-        let color = '#bdbdbd'; // По умолчанию цвет "неизвестно"
-        let opacity = 1; // По умолчанию непрозрачность для "неизвестно"
-        let fillOpacity = 1; // По умолчанию заливка непрозрачная
-
-        if (feature.properties.name === 'Граница') {
-          color = '#000000'
-          opacity = 0.0; // Прозрачность границы
-          fillOpacity = 0.0; // Прозрачность заливки
-        } else if (feature.properties.name === 'Линия Фронта') {
-          color = '#c41000'; // Цвет для "Оккупировано"
-          opacity = 1;
-          fillOpacity = 0.0;// Заливка полупрозрачная
-        }
-
-        // Возвращаем стиль с про   зрачностью
-        return {
-          color: color,
-          weight: 2,
-          opacity: opacity,
-          fillColor: color,
-          fillOpacity: fillOpacity
-        };
-      }
-    }).addTo(map);
-  })
-  .catch(error => console.error("Ошибка загрузки JSON:", error));
 
   let polygons = {};
 let menuVisible = false;
