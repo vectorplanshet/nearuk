@@ -142,7 +142,7 @@ input[type="text"]:focus {
         }
     
         .red-id {
-            color: red;
+            color: #F7040A;
         }
         .blue-id {
             color: #0400ff;
@@ -154,7 +154,7 @@ input[type="text"]:focus {
 .red-id .r-container,
 .red-id .rls-container 
 .red-id .icon-container {
-    color: rgb(255, 0, 0);
+    color: #F7040A;
 }
 
 .blue-id .label-container,
@@ -1059,7 +1059,7 @@ function updatePosition(timestamp) {
     const [newLat, newLng] = calculateNewPosition(lat, lng, speed, elapsedTime, targetLat, targetLng);
     marker.setLatLng([newLat, newLng]);
 
-    if (haversine(newLat, newLng, targetLat, targetLng) > 1) {
+    if (haversine(newLat, newLng, targetLat, targetLng) > 0.1) {
         requestAnimationFrame(updatePosition);
     } else {
         marker.remove(); // Удалить маркер, если цель достигнута
