@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Планшет ЗРВ</title>
+    <title>Remini Planshet</title>
     <link rel="shortcut icon" href="1321457.png" />
     <div class="template-container">
     </div>    
@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-measure/3.1.0/leaflet-measure.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch/dist/geosearch.css" />
-    <link href = "fonts/segoe ui/stylesheet.css" rel = "stylesheet" type = "text/css" />
     <script
     src="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.js"
     integrity="sha384-8SqKZR7V8uOetpjjbcNJHvwuHpb074WS0UXjCLhzfJUqYn3B/uWx1WVv5mwRp1mV"
     crossorigin="anonymous"
 ></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         /* General Map Styles */
         #map {
@@ -31,107 +33,78 @@
     height: 100%;
 }
 
-  #map {
-    position: absolute;
-    top: calc(100vw / (2560 / 70));
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
- #toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
+#map {
+    height: 100%;
     width: 100%;
-    aspect-ratio: 2560 / 70;
-    background: url('toolbar.png') no-repeat center center;
-    background-size: contain;
-    z-index: 1000;
-  }
-  #map {
-    position: absolute;
-    top: calc(100vw / (2560 / 70));
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+}
+
         /* Modal Background */
         .modal-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(21, 24, 30, 0.85);
-    z-index: 1000;
-    display: none;
-    backdrop-filter: blur(4px);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.95);
-    background: #252b36;
-    padding: 20px 24px;
-    border-radius: 14px;
-    z-index: 1001;
-    max-width: 360px;
-    width: 90%;
-    transition: all 0.35s ease;
-    color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-.modal.show {
-    display: block;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.modal h2 {
-    font-size: 22px;
-    color: #ffffff;
-    margin-bottom: 16px;
-    text-align: center;
-}
-input[type="text"] {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 14px;
-    background-color: #1e232c;
-    color: #ffffff;
-    border-radius: 8px;
-    border: 2px solid #3a4152;
-}
-
-input[type="text"]:focus {
-    border-color: #4a90e2;
-    background-color: #252b36;
-    outline: none;
-}
-
-.modal-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    margin-top: 20px;
-    background-color: #4674dc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.modal-button:hover {
-    background-color: #5c90de;
-}
-
-.modal-button:focus {
-    outline: none;
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: none;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            max-width: 450px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .modal h2 {
+            font-size: 24px;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        .modal-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .modal-button:hover {
+            background-color: #357ab7;
+        }
+        .modal-button:focus {
+            outline: none;
+        }
+        .modal-close {
+            background-color: red;
+        }
         /* Сдвигаем контейнер вправо для нужных объектов */
         .shifted-info-container {
            width: 30px;
@@ -142,10 +115,10 @@ input[type="text"]:focus {
         }
     
         .red-id {
-            color: #F7040A;
+            color: red;
         }
         .blue-id {
-            color: #0400ff;
+            color: #006aff;
         }
         
 
@@ -154,16 +127,16 @@ input[type="text"]:focus {
 .red-id .r-container,
 .red-id .rls-container 
 .red-id .icon-container {
-    color: #F7040A;
+    color: red;
 }
 
 .blue-id .label-container,
 .blue-id .r-container,
 .blue-id .rls-container 
 .blue-id .icon-container {
-    color: #0400ff; /* Синий цвет для текста */
+    color: #006aff; /* Синий цвет для текста */
 }
-        .shifted-id-x-101 { 
+        .shifted-id-x-101 {
             margin-left: 20px;
        }
         .shifted-id {
@@ -176,47 +149,47 @@ input[type="text"]:focus {
             margin-left: 25px;
         }
         .label-container {
-            font-size: 14.3px;
-
+            font-size: 14px;
+            font-weight: 500;
+                    font-family: 'Roboto', sans-serif;
             -webkit-text-stroke-color: black;
         }
         .r-container {
-            font-size: 14.3px; 
-
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
  
         }
         .rls1-container {
-            font-size: 14.3px;
-
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+ 
             display: flex;
     flex-direction: column;
+    font-weight: 500;
    }
         .rls-container {
-            font-size: 14.3px;
+            font-size: 14px;
             display: flex;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
     flex-direction: column;
     justify-content: center;
    }
    .info-container {
-            line-height: 13.3px;
-            margin-top: 8px;
-      
-        }
-        .info1-container {
-            line-height: 14.3px;
-            margin-top: 1px;
+            line-height: 16.7px;
+            margin-top: 25px;
         }
         .label1-container {
             font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 450;
             -webkit-text-stroke-color: black;
-            white-space: nowrap;
-
-            color: black;
         }
         .r1-container {
             font-size: 14px;
-                        font-weight: 600;
-font-family: 'Segoe UI', sans-serif;
+            font-weight: 450;
+            font-family: 'Roboto', sans-serif;
  
         }
         .c-container {
@@ -224,22 +197,20 @@ font-family: 'Segoe UI', sans-serif;
         }
         /* Delete Button */
         #deleteButton {
-    position: absolute;
-    bottom: 30px;
-    left: 10px;
-    background: transparent;
-    color: rgb(255, 0, 0);
-    padding: 15px 25px;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    box-shadow: none;
-    transition: all 0.3s ease;
-    z-index: 1003;
-    text-align: left;
-    padding-left: 7px;
-}
+            position: absolute;
+            bottom: 30px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1003;
+        }
         /* Smooth Transition for Modals */  
         .modal.show {
             display: block;
@@ -256,7 +227,7 @@ font-family: 'Segoe UI', sans-serif;
         .icon-container {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     font-size: 14px;
     position: absolute;
 }       
@@ -265,7 +236,7 @@ font-family: 'Segoe UI', sans-serif;
             height: 27px;
             object-fit: cover;
             display: block;
-            margin-bottom: 30px;  
+            margin-bottom: 25px;
         }
 
 
@@ -303,16 +274,18 @@ font-family: 'Segoe UI', sans-serif;
             margin-right: 5px;
         }
         button#alert-button {
-    background: transparent;
-    color: rgb(255, 0, 0);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 150px;
-    border-radius: 5px;
-    text-align: left; /* Текст слева */
-    padding-left: 7px;
-}
+            background: #ff0800;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 150px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        button#alert-button:hover {
+            background: #c9302c;
+        }
         #overlay {
     position: absolute;
     top: 0;
@@ -401,7 +374,7 @@ font-family: 'Segoe UI', sans-serif;
         #submitButton {
             padding: 12px 25px;
             font-size: 18px;
-            background: #ff0000;
+            background: #ffffff;
             color: rgb(0, 0, 0);
             border: none;
             border-radius: 5px;
@@ -412,21 +385,12 @@ font-family: 'Segoe UI', sans-serif;
         #submitButton:hover {
             background: #9d9d9d;
         }
-    .icon-container .icon.su34-icon {
-    width: 35px;
-    height: 35px;
-}
-.leaflet-control-layers {
-  opacity: 0;
-}
-
     </style>
 </head>
 <body>
-      <div id="toolbar"></div>
     <div id="map"></div>
     <div class="overlay"></div>
-    <button id="deleteButton"><i class="fas fa-trash-alt"></i></button>
+    <button id="deleteButton"><i class="fas fa-trash-alt"></i> Удалить объект</button>
 <!-- Модальное окно для отображения координат -->
 <div class="modal" id="coordinatesModal">
     <h2>Координаты:</h2>
@@ -453,7 +417,7 @@ font-family: 'Segoe UI', sans-serif;
     </div>
     
     <div id="alert-container">
-        <button id="alert-button"><i class="fas fa-bell"></i></button>
+        <button id="alert-button"><i class="fas fa-bell"></i> Дать тревогу</button>
         <div id="alert-menu">
             <h3>Дать тревогу</h3>
             <div>
@@ -502,7 +466,7 @@ font-family: 'Segoe UI', sans-serif;
             <input type="checkbox" id="Херсонская область"><label for="Днепропетровская область">Херсонская область</label>
         </div>
         <div>
-            <input type="checkbox" id="АР Крым"><label for="АР Крым">АР Крым</label>
+            <input type="checkbox" id="А.Р Крым"><label for="А.Р Крым">А.Р Крым</label>
         </div>
         <div>
             <input type="checkbox" id="Одесская область"><label for="Одесская область">Одесская область</label>
@@ -514,7 +478,7 @@ font-family: 'Segoe UI', sans-serif;
             <input type="checkbox" id="Хмельницкая область"><label for="Хмельницкая область">Хмельницкая область</label>
         </div>
         <div>
-            <input type="checkbox" id="Ровненская область"><label for="Ровненская область">Ровненская область</label>
+            <input type="checkbox" id="Ровенская область"><label for="Ровенская область">Ровенская область</label>
         </div>
         <div>
             <input type="checkbox" id="Тернопольская область"><label for="Тернопольская область">Тернопольская область</label>
@@ -621,20 +585,26 @@ var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_brigh
 	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	ext: 'png'
 });
-// Настройка слоев для переключения
+
+googleStreets.addTo(map);
 
 // Настройка слоев для переключения
 const baseLayers = {
     "OSM": osmLayer,
+    "OSM Black": darkLayer,
+    "Satellite": satelliteLayerWithBorders,
     "Google Maps": googleStreets,
+    "Google Hybrid": googleHybrid,
+    "Google Terrain": googleTerrain,
+    "OpenTopoMap": OpenTopoMap,
+    "OPNVKarte": OPNVKarte,
+    "Ersi": Esri_WorldTopoMap,
+    "Stadia White": Stadia_OSMBright,
+    "Stadia Dark": Stadia_AlidadeSmoothDark
 };
-
-googleStreets.addTo(map)
 
 // Добавляем контрол для переключения карт
 L.control.layers(baseLayers).addTo(map);
-
-// Настройка слоев для переключения
 
 // Функция для изменения фильтра на изображении
 function updateOverlayFilter() {
@@ -653,7 +623,7 @@ map.on('layerremove', updateOverlayFilter);
 // Если карта уже загружена, сразу применим фильтр
 updateOverlayFilter();
 
-        let currentObjectId = 1000;
+        let currentObjectId = 9500;
         let deleteMode = false;
         const markers = [];
 
@@ -790,7 +760,6 @@ updateOverlayFilter();
             const objectId = generateId();
             let iconUrl;
             let iconClass = 'red-id';
-             let iconClass1 = ''           
             let shiftedClass = ''
             let iconSize = ''
             let shiftedClasss = ''
@@ -807,9 +776,13 @@ updateOverlayFilter();
     iconHtml = `
         <div class="icon-container ${iconClass}">
             <img src="${iconUrl}" class="icon" />
-            <div class="info1-container ${shiftedClass} ${shiftedClasss}">
-                <span class="label1-container ${iconClass}">ер</span>
+            <div class="info-container ${shiftedClass} ${shiftedClasss}">
+                <span class="label1-container ${iconClass}">${objectId} ${kievTime}</span>
+                <div class="info-container ${shiftedClass} ${shiftedClasss}">
+                <span class="r1-container ${iconClass}">ЕППО</span>
+                <span class="rls1-container ${iconClass}">${objectId1}</span>
             </div>
+                        </div>
         </div>
     `;
     // Удаляем маркер через 15 минут (900000 мс)
@@ -905,24 +878,19 @@ setTimeout(() => {
         iconClass = 'blue-id';
     } else if (speed >= 1200 && speed <= 1201) {
         iconUrl = 'Su-34.png';
-iconClass = 'red-id su34-icon';
     } else if (speed >= 1600 && speed <= 1601) {
         iconUrl = 'Su-57.png';
-        iconClass = 'red-id su34-icon';
     } else if (speed >= 1204 && speed <= 1205) {
         iconUrl = 'Su-30.png';
-        iconClass = 'red-id su34-icon';
     } else if (speed >= 1202 && speed <= 1203) {
         iconUrl = 'Su-30 BLR.png';
         iconClass = 'blue-id';  
     } else if (speed >= 1400 && speed <= 1401) {
         iconUrl = 'Su-35.png';
-        iconClass = 'red-id su34-icon';
     } else if (speed >= 2300 && speed <= 2301) {
         iconUrl = 'Tu-22M3.png';
     } else if (speed >= 952 && speed <= 953) {
          iconUrl = 'Su25.png';
-         iconClass = 'red-id su34-icon';
     } else if (speed >= 954 && speed <= 955) {
         iconUrl = 'Su25 BLR.png';
         iconClass = 'blue-id';  
@@ -949,17 +917,17 @@ iconClass = 'red-id su34-icon';
         iconUrl = 'neyst tip.png';
     }
 
-// Генерируем случайное число от 1 до 30
-let randomNumber = Math.floor(Math.random() * 99) + 1;
 
-// Выводим число в консоль
-console.log(randomNumber);
     // Основной шаблон для всех остальных случаев
     iconHtml = `
         <div class="icon-container ${iconClass}">
-            <img src="${iconUrl}" class="icon ${iconClass || ''}" />
+            <img src="${iconUrl}" class="icon" />
              <div class="info-container ${shiftedClass} ${shiftedClasss}">
-                <span class="label-container ${iconClass}">${objectId}<span style="color:transparent;">ПП</span></span>
+                <span class="label-container ${iconClass}">${objectId}п</span>
+                <div class="c-container">
+                 <span class="r-container ${iconClass}">1 ПП (79) (р)</span>
+            </div>
+        </div>
                 </div>
     `;
 }
@@ -970,7 +938,8 @@ console.log(randomNumber);
                         iconAnchor: [20, 20],
                     });
 
-               const marker = L.marker([lat, lng], { icon }).addTo(map);
+                    const marker = L.marker([lat, lng], { icon }).addTo(map);
+                    
 
 // Сопоставление английских названий с русскими
 const translations = {
@@ -1011,223 +980,61 @@ const translations = {
     "mirage": "Mirage-2000",
     "neyst tip": "Неизвестный тип"
 };
+
+// Получаем название объекта без ".png"
 let objectKey = iconUrl.replace('.png', '').replace(/-/g, ' ');
+
+// Переводим название, если оно есть в словаре, иначе оставляем как есть
 let objectType = translations[objectKey] || objectKey;
+
+// Приводим к нормальному регистру (каждое слово с большой буквы)
 objectType = objectType.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-let currentLat = lat;
-let currentLng = lng;
-let targetLatVar = targetLat;
-let targetLngVar = targetLng;
-let isActive = true;
-let waypoints = [];
-let currentWaypointIndex = 0;
-let lastTimestamp = null;
-
+// Формируем содержимое popup
 const customPopupContent = `
     <div class="custom-popup">
         <p><strong>ЦЕЛЬ (2111):</strong> ${objectType}</p>
         <p><strong>СКОРОСТЬ (2818):</strong> ${speed} КМ/Ч</p>
-        <button id="changeCoordsBtn">Изменить координаты</button>
     </div>
 `;
 
+// Привязываем кастомизированное всплывающее окно
 marker.bindPopup(customPopupContent);
 
-marker.on('popupopen', () => {
-    setTimeout(() => { 
-        const popupEl = marker.getPopup().getElement();
-        if (!popupEl) return;
-
-        const btn = popupEl.querySelector('#changeCoordsBtn');
-        if (!btn) return;
-
-        btn.onclick = () => {
-            openCoordsModal((coordsText) => {
-                if (!coordsText) return;
-
-                const coordsList = coordsText.split("\n").map(line => {
-                    const [lat, lng] = line.split(",").map(Number);
-                    return [lat, lng];
-                }).filter(c => !isNaN(c[0]) && !isNaN(c[1]));
-
-                if (coordsList.length > 0) {
-                    const currentPos = marker.getLatLng();
-                    currentLat = currentPos.lat;
-                    currentLng = currentPos.lng;
-
-                    waypoints = [[currentLat, currentLng], ...coordsList];
-                    currentWaypointIndex = 1;
-                    targetLatVar = waypoints[1][0];
-                    targetLngVar = waypoints[1][1];
-                    lastTimestamp = null;
-
-                    if (!isActive) {
-                        isActive = true;
-                        requestAnimationFrame(updatePosition);
-                    }
-                }
-            });
-        };
-    }, 0);
+// Слушаем клик для открытия окна
+marker.on('click', function() {
+    marker.openPopup();
 });
 
-marker.on('click', () => marker.openPopup());
 
-function rotateIcon(lat1, lng1, lat2, lng2, speed) {
-    if (speed === 0) {
-        marker._icon.querySelector('.icon').style.transform = `rotate(0deg)`;
-        return;
-    }
-    const course = calculateCourse(lat1, lng1, lat2, lng2) * (180 / Math.PI);
+
+
+                    // Проверяем, если скорость больше 0, то поворачиваем иконку
+if (speed > 0) {
+    const course = calculateCourse(lat, lng, targetLat, targetLng) * (180 / Math.PI);
     const angle = (course + 360) % 360;
     marker._icon.querySelector('.icon').style.transform = `rotate(${angle}deg)`;
+} else {
+    // Если скорость 0, не вращаем иконку (сбрасываем поворот)
+    marker._icon.querySelector('.icon').style.transform = `rotate(0deg)`;
 }
 
-markers.push(marker);
+let startTime = null;
+function updatePosition(timestamp) {                                                                                    
+    if (!startTime) startTime = timestamp;
+    const elapsedTime = (timestamp - startTime) / 1000; // время в секундах
 
-function updatePosition(timestamp) {
-    if (!lastTimestamp) lastTimestamp = timestamp;
-    const deltaTime = (timestamp - lastTimestamp) / 1000;
-    lastTimestamp = timestamp;
+    const [newLat, newLng] = calculateNewPosition(lat, lng, speed, elapsedTime, targetLat, targetLng);
+    marker.setLatLng([newLat, newLng]);
 
-    const [newLat, newLng] = calculateNewPosition(
-        currentLat, currentLng, speed, deltaTime, targetLatVar, targetLngVar
-    );
-
-    const distance = haversine(currentLat, currentLng, targetLatVar, targetLngVar);
-    const stepDistance = haversine(currentLat, currentLng, newLat, newLng);
-
-    if (stepDistance >= distance) {
-        currentLat = targetLatVar;
-        currentLng = targetLngVar;
-    } else {
-        currentLat = newLat;
-        currentLng = newLng;
-        rotateIcon(currentLat, currentLng, targetLatVar, targetLngVar, speed);
-    }
-
-    marker.setLatLng([currentLat, currentLng]);
-
-    if (distance > 0.00001 && isActive) { 
+    if (haversine(newLat, newLng, targetLat, targetLng) > 1) {
         requestAnimationFrame(updatePosition);
     } else {
-        currentWaypointIndex++;
-        if (currentWaypointIndex < waypoints.length) {
-            targetLatVar = waypoints[currentWaypointIndex][0];
-            targetLngVar = waypoints[currentWaypointIndex][1];
-            requestAnimationFrame(updatePosition);
-        } else {
-            isActive = false;
-            marker.remove();
-        }
+        marker.remove(); // Удалить маркер, если цель достигнута
     }
 }
 
-waypoints.push([targetLat, targetLng]);
-currentWaypointIndex = 0;
-lastTimestamp = null;
 requestAnimationFrame(updatePosition);
-
-// ==== Модальное окно для "Изменить координаты" (сверху слева) ====
-
-function openCoordsModal(callback) {
-    const background = document.createElement('div');
-    background.className = 'modal-background show';
-    document.body.appendChild(background);
-
-    const box = document.createElement('div');
-    box.className = 'modal show coords-modal-top-left';
-    box.innerHTML = `
-        <h2>Выберите точки маршрута</h2>
-        <textarea id="coordsInput" placeholder="Кликай колёсиком по карте" style="width:100%; height:80px; font-size:7px; background:#1e232c; color:#fff; border:1px solid #3a4152; border-radius:4px; padding:3px;"></textarea>
-        <button id="coordsOk" class="modal-button">OK</button>
-        <button id="coordsCancel" class="modal-button">Отмена</button>
-    `;
-    document.body.appendChild(box);
-
-    // Расположение сверху слева
-    box.style.top = '20px';
-    box.style.left = '20px';
-    box.style.transform = 'none';
-
-    // Drag
-    let isDragging = false;
-    let offsetX, offsetY;
-    box.onmousedown = (e) => {
-        if (e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") return;
-        isDragging = true;
-        offsetX = e.clientX - box.offsetLeft;
-        offsetY = e.clientY - box.offsetTop;
-        document.onmousemove = (ev) => {
-            if (isDragging) {
-                box.style.left = ev.clientX - offsetX + "px";
-                box.style.top = ev.clientY - offsetY + "px";
-            }
-        };
-        document.onmouseup = () => {
-            isDragging = false;
-            document.onmousemove = null;
-            document.onmouseup = null;
-        };
-    };
-
-    const textarea = box.querySelector('#coordsInput');
-    let tempWaypoints = [marker.getLatLng()];
-    let routeLine = L.polyline(tempWaypoints, {
-        color: '#dd0347',
-        weight: 3,
-        opacity: 1
-    }).addTo(map);
-
-    const addCoord = (e) => {
-        if (e.originalEvent.button !== 1) return;
-        e.originalEvent.preventDefault();
-        const latlng = map.mouseEventToLatLng(e.originalEvent);
-        textarea.value += latlng.lat.toFixed(5) + "," + latlng.lng.toFixed(5) + "\n";
-        tempWaypoints.push(latlng);
-        routeLine.setLatLngs(tempWaypoints);
-    };
-
-    map.on('mousedown', addCoord);
-
-    box.querySelector('#coordsOk').onclick = () => {
-        map.off('mousedown', addCoord);
-        map.removeLayer(routeLine);
-
-        const coordsText = textarea.value.trim();
-        const coordsList = coordsText.split("\n").map(line => {
-            const [lat, lng] = line.split(",").map(Number);
-            return [lat, lng];
-        }).filter(c => !isNaN(c[0]) && !isNaN(c[1]));
-
-        if (coordsList.length > 0) {
-            const currentPos = marker.getLatLng();
-            currentLat = currentPos.lat;
-            currentLng = currentPos.lng;
-
-            waypoints = [[currentLat, currentLng], ...coordsList];
-            currentWaypointIndex = 1;
-            targetLatVar = waypoints[1][0];
-            targetLngVar = waypoints[1][1];
-            lastTimestamp = null;
-
-            if (!isActive) requestAnimationFrame(updatePosition);
-        }
-
-        document.body.removeChild(box);
-        document.body.removeChild(background);
-    };
-
-    box.querySelector('#coordsCancel').onclick = () => {
-        map.off('mousedown', addCoord);
-        map.removeLayer(routeLine);
-        document.body.removeChild(box);
-        document.body.removeChild(background);
-        callback(null);
-    };
-}
-
 
 
                     marker.on('click', function () {
@@ -1239,8 +1046,8 @@ function openCoordsModal(callback) {
 
                 deleteMode = false;
                 const deleteButton = document.getElementById('deleteButton');
-            
-                deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                deleteButton.style.backgroundColor = 'red';
+                deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Удалить объект';
             }
         }
     });
@@ -1254,9 +1061,11 @@ function openCoordsModal(callback) {
     
     // Изменяем только текст и состояние, оставляем стили без изменений
     if (deleteMode) {
-        this.innerHTML = '<i class="fas fa-check"></i>'; // Изменяем только текст
+        this.style.backgroundColor = 'green';
+        this.innerHTML = '<i class="fas fa-check"></i> Выход из режима удаления'; // Изменяем только текст
     } else {
-        this.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Изменяем только текст
+        this.style.backgroundColor = 'red';
+        this.innerHTML = '<i class="fas fa-trash-alt"></i> Удалить объект'; // Изменяем только текст
     }
 };
 
@@ -1266,11 +1075,13 @@ function openCoordsModal(callback) {
         });
         // РЛС для объектов
         const rlsOptions = [
-    "35М",
-    "18МА",
-    "МЛ",
-    "35",
-    "79"
+    "59H6-E",
+    "Родник",
+    "Роса-РБ-М",
+    "Восток-3D",
+    "5Н84А",
+    "19Ж6М",
+    "Малахит"
 ]; // Исключаем "Волга" из общего списка
 
 // Функция для выбора РЛС
@@ -1295,51 +1106,41 @@ map.on('contextmenu', function (e) {
         console.error('Ошибка копирования координат:', err);
     });
 });
-fetch("granica.json")
+fetch("front.json")
   .then(response => response.json())
   .then(data => {
-    // Первый слой — жёлтая обводка (только для "Граница")
-    L.geoJSON(data, {
-      filter: feature => feature.properties.name === 'Граница',
-      style: {
-        color: '#ffdd8f',
-        weight: 10,
-        opacity: 0.7,
-        fillOpacity: 0.0
-      }
-    }).addTo(map);
-
-    // Второй слой — все остальные стили, включая "Граница"
     L.geoJSON(data, {
       style: function(feature) {
-        let color = '#bdbdbd'; // По умолчанию
-        let opacity = 1;
-        let fillOpacity = 1;
-        let dashArray = '';  // Без пунктиров по умолчанию
+        let color = '#bdbdbd'; // По умолчанию цвет "неизвестно"
+        let opacity = 1; // По умолчанию непрозрачность для "неизвестно"
+        let fillOpacity = 1; // По умолчанию заливка непрозрачная
 
-        if (feature.properties.name === 'Граница') {
-          color = '#000000';
-          opacity = 0.7;
-          fillOpacity = 0.0;
-          dashArray = '5, 5';  // Это создаёт пунктирную линию
-        } else if (feature.properties.name === 'Линия Фроінта') {
-          color = '#B22222';
-          opacity = 0.7;
-          fillOpacity = 0.0;
+        if (feature.properties.name === 'Освобождено') {
+          color = '#0f9d58'
+          opacity = 0.0; // Прозрачность границы
+          fillOpacity = 0.15; // Прозрачность заливки
+        } else if (feature.properties.name === 'Оккупировано') {
+          color = '#a52714'; // Цвет для "Оккупировано"
+          opacity = 0.0
+          fillOpacity = 0.25// Заливка полупрозрачная
+        } else if (feature.properties.name === 'Неизвестно') {
+          color = '#bdbdbd'; // Цвет для "Неизвестно"
+          opacity = 0.1; // Прозрачность границы
+          fillOpacity = 0.1; // Прозрачность заливки
         }
 
+        // Возвращаем стиль с прозрачностью
         return {
           color: color,
           weight: 2,
           opacity: opacity,
           fillColor: color,
-          fillOpacity: fillOpacity,
-          dashArray: dashArray  // Применяем пунктир для "Границы"
+          fillOpacity: fillOpacity
         };
       }
     }).addTo(map);
-  });
-
+  })
+  .catch(error => console.error("Ошибка загрузки JSON:", error));
 
   let polygons = {};
 let menuVisible = false;
@@ -1354,14 +1155,14 @@ fetch('trevoga.json')
         });
 
         // Автоматически активируем "Луганская область" и "А. Р Крым"
-        const autoActivateRegions = ["Луганская область", "АР Крым"];
+        const autoActivateRegions = ["Луганская область", "А.Р Крым"];
         
         document.querySelectorAll('#alert-menu input[type=checkbox]').forEach(checkbox => {
             checkbox.onchange = function() {
                 let region = checkbox.id;
                 if (checkbox.checked && regions[region]) {
                     let layer = L.geoJSON(regions[region], {
-                        style: { color: 'red', fillColor: 'red', fillOpacity: 0.3, weight: 0.0 }
+                        style: { color: 'red', fillColor: 'red', fillOpacity: 0.2, weight: 0.0 }
                     }).addTo(map);
                     polygons[region] = layer;
                 } else if (polygons[region]) {
@@ -1421,456 +1222,8 @@ function getNextObjectId() {
         </div>
     `;
     return iconHTML;
-    };
-  // Иконка Сумы
-  var sumyIcon = L.icon({
-    iconUrl: 'sumy.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Киев
-  var kyivIcon = L.icon({
-    iconUrl: 'kyiv.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Ивано-Франковск
-  var ifrankivskIcon = L.icon({
-    iconUrl: 'ifrankivsk.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Львов
-  var lvivIcon = L.icon({
-    iconUrl: 'lviv.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Херсон
-  var khersonIcon = L.icon({
-    iconUrl: 'kherson.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Хмельницкий
-  var khmelnitskyIcon = L.icon({
-    iconUrl: 'khmelnitsky.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Житомир
-  var zhytomyrIcon = L.icon({
-    iconUrl: 'zhytomyr.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Черкассы
-  var cherkasyIcon = L.icon({
-    iconUrl: 'cherkasy.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Чернигов
-  var chernihivIcon = L.icon({
-    iconUrl: 'chernihiv.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Харьков
-  var kharkivIcon = L.icon({
-    iconUrl: 'kharkiv.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Одесса (поменяна на odesa.png)
-  var odesaIcon = L.icon({
-    iconUrl: 'odesa.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Донецк
-  var donetskIcon = L.icon({
-    iconUrl: 'donetsk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Луганск
-  var luhanskIcon = L.icon({
-    iconUrl: 'luhansk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Николаев
-  var nikolaevIcon = L.icon({
-    iconUrl: 'mykolaiv.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Днепр
-  var dnieperIcon = L.icon({
-    iconUrl: 'dnipro.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Полтава
-  var poltavaIcon = L.icon({
-    iconUrl: 'poltava.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Луцк
-  var lutskIcon = L.icon({
-    iconUrl: 'lutsk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Ровно (поменяна на rivne.png)
-  var rivneIcon = L.icon({
-    iconUrl: 'rivne.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Иконка Тернополь (поменяна размер на 100x27)
-  var ternopilIcon = L.icon({
-    iconUrl: 'ternopil.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var vinytsaIcon = L.icon({
-    iconUrl: 'vinytsa.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var kurskIcon = L.icon({
-    iconUrl: 'kursk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var kropIcon = L.icon({
-    iconUrl: 'kropivnitsky.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var uzhorodIcon = L.icon({
-    iconUrl: 'uzhorod.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-  
-  var zaporizhzhyaIcon = L.icon({
-    iconUrl: 'zaporizhzhya.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var voronezhIcon = L.icon({
-    iconUrl: 'voronezh.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var chernivtsyIcon = L.icon({
-    iconUrl: 'chernivtsy.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var sevastopolIcon = L.icon({
-    iconUrl: 'sevastopol.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var simferopolIcon = L.icon({
-    iconUrl: 'simferopol.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var rostovIcon = L.icon({
-    iconUrl: 'rostov.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var belgorodIcon = L.icon({
-    iconUrl: 'belgorod.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var orelIcon = L.icon({
-    iconUrl: 'orel.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-
-  var krasnodarIcon = L.icon({
-    iconUrl: 'krasnodar.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var kishinevIcon = L.icon({
-    iconUrl: 'kishinev.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var tiraspolIcon = L.icon({
-    iconUrl: 'tiraspol.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var bryanskIcon = L.icon({
-    iconUrl: 'bryansk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var gomelIcon = L.icon({
-    iconUrl: 'gomel.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var brestIcon = L.icon({
-    iconUrl: 'brest.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var tambovIcon = L.icon({
-    iconUrl: 'tambov.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var lipetskIcon = L.icon({
-    iconUrl: 'lipetsk.png',
-    iconSize: [54, 17],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var volgogradIcon = L.icon({
-    iconUrl: 'volgograd.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  var stavropolIcon = L.icon({
-    iconUrl: 'stavropol.png',
-    iconSize: [100, 27],
-    iconAnchor: [8, 8],
-    popupAnchor: [0, -8]
-  });
-
-  // Маркеры
-  L.marker([50.9077, 34.7981], {icon: sumyIcon}).addTo(map)
-    .bindPopup('Сумы');
-
-  L.marker([50.4501, 30.5234], {icon: kyivIcon}).addTo(map)
-    .bindPopup('Киев');
-
-  L.marker([48.9226, 24.7111], {icon: ifrankivskIcon}).addTo(map)
-    .bindPopup('Ивано-Франковск');
-
-  L.marker([49.8397, 24.0297], {icon: lvivIcon}).addTo(map)
-    .bindPopup('Львов');
-
-  L.marker([46.6354, 32.6168], {icon: khersonIcon}).addTo(map)
-    .bindPopup('Херсон');
-
-  L.marker([49.4194, 26.9871], {icon: khmelnitskyIcon}).addTo(map)
-    .bindPopup('Хмельницкий');
-
-  L.marker([50.2558, 28.6647], {icon: zhytomyrIcon}).addTo(map)
-    .bindPopup('Житомир');
-
-  L.marker([49.4444, 32.0591], {icon: cherkasyIcon}).addTo(map)
-    .bindPopup('Черкассы');
-
-  L.marker([51.4845, 31.2752], {icon: chernihivIcon}).addTo(map)
-    .bindPopup('Чернигов');
-
-  L.marker([49.9997, 36.3055], {icon: kharkivIcon}).addTo(map)
-    .bindPopup('Харьков');
-
-  L.marker([46.466028051982505, 30.73194464183904], {icon: odesaIcon}).addTo(map) // Одесса - новая иконка
-    .bindPopup('Одесса');
-
-  L.marker([48.0159, 37.8028], {icon: donetskIcon}).addTo(map)
-    .bindPopup('Донецк');
-
-  L.marker([48.5734, 39.2917], {icon: luhanskIcon}).addTo(map) // Луганск
-    .bindPopup('Луганск');
-
-  L.marker([46.96606377078415, 32.00714190111791], {icon: nikolaevIcon}).addTo(map) // Николаев
-    .bindPopup('Николаев');
-
-  L.marker([48.4647, 35.0462], {icon: dnieperIcon}).addTo(map) // Днепр
-    .bindPopup('Днепр');
-
-  L.marker([49.5883, 34.5516], {icon: poltavaIcon}).addTo(map) // Полтава
-    .bindPopup('Полтава');
-
-  L.marker([50.7384, 25.3496], {icon: lutskIcon}).addTo(map) // Луцк
-    .bindPopup('Луцк');
-
-  L.marker([50.6174, 26.2505], {icon: rivneIcon}).addTo(map) // Ровно
-    .bindPopup('Ровно');
-
-  L.marker([49.5535, 25.5944], {icon: ternopilIcon}).addTo(map) // Тернополь
-    .bindPopup('Тернополь');
-
-  L.marker([49.230076505396205, 28.466140385007137], {icon: vinytsaIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Винница');
-
-    L.marker([51.74054846059095, 36.202022431404735], {icon: kurskIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Курск');
-    
-    L.marker([48.505884379238395, 32.25939701824791], {icon: kropIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Кропивницкий');   
-    
-    L.marker([47.83806363302623, 35.138117335493426], {icon: zaporizhzhyaIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Запорожье');
-
-    L.marker([48.617860172673396, 22.287111731790745], {icon: uzhorodIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Ужгород');
-
-    L.marker([51.664770210236625, 39.192003637554144], {icon: voronezhIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Воронеж');
-    
-    L.marker([48.289416014336034, 25.93849702601369], {icon: chernivtsyIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Черновцы');
-
-    L.marker([44.606932664165086, 33.52121147182199], {icon: sevastopolIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Севастополь');
-
-    L.marker([44.944693129246815, 34.095374166785824], {icon: simferopolIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Симферополь');
-
-    L.marker([47.23695642994803, 39.70560535866672], {icon: rostovIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Ростов-На-Дону');
-    
-    L.marker([50.593362209571985, 36.60262218379635], {icon: belgorodIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Белгород');
-
-    L.marker([52.96806326717185, 36.05768708492768], {icon: orelIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Орел');
-
-    L.marker([45.03422412918758, 38.97433481150454], {icon: krasnodarIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Краснодар');
-
-    L.marker([47.00443988352829, 28.86221026505548], {icon: kishinevIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Кишинев');
-
-    L.marker([46.848418668720264, 29.596272952267398], {icon: tiraspolIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Тирасполь');
-
-    L.marker([53.26313369889039, 34.41449235432519], {icon: bryanskIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Брянск');
-    
-    L.marker([52.427529150174315, 30.992362579646386], {icon: gomelIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Гомель');
-
-    L.marker([52.098693394195976, 23.763378922343506], {icon: brestIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Брест');
-
-    L.marker([52.73283272787129, 41.43950655006939], {icon: tambovIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Тамбов');
-
-    L.marker([52.61046379351352, 39.60105501243989], {icon: lipetskIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Липецк');
-
-    L.marker([48.70827924051519, 44.50919990164602], {icon: volgogradIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Волгоград');
-
-    L.marker([45.037336252262534, 41.9645886199773], {icon: stavropolIcon}).addTo(map) // Винница (новые координаты)
-    .bindPopup('Ставрополь');
-      // Загрузка GeoJSON (замени на свой путь к JSON)
-  fetch('ukraine.json') // или 'regions.json', если у тебя так называется
-    .then(res => res.json())
-    .then(data => {
-      // Добавление GeoJSON с нужным стилем
-      L.geoJSON(data, {
-style: function(feature) {
-  return {
-    color: 'black',
-    weight: 0.3,
-    dashArray: '4',
-    fillOpacity: 0
-  };
 }
 
-      }).addTo(map);
-    });
-</script>
-</script>
-</script>
+    </script>
 </body>
 </html>
